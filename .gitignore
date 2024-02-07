@@ -135,8 +135,9 @@ replay_pid*
 
 ### Gradle ###
 .gradle
-**/build/
 !src/**/build/
+gradlew.bat
+gradlew
 
 # Ignore Gradle GUI config
 gradle-app.setting
@@ -159,3 +160,4 @@ gradle-app.setting
 ### Gradle Patch ###
 # Java heap dump
 *.hprof
+
