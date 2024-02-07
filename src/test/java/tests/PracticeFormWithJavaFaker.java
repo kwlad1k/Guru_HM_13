@@ -1,6 +1,7 @@
 package tests;
 
-import org.junit.jupiter.api.Test;
+import io.qameta.allure.Owner;
+import org.junit.jupiter.api.*;
 import pages.RegistrationPage;
 
 public class PracticeFormWithJavaFaker extends TestBase {
@@ -10,13 +11,16 @@ public class PracticeFormWithJavaFaker extends TestBase {
     TestData testData = new TestData();
 
     @Test
+    @Tag("Registration")
+    @Owner("Kwlad1ck")
+    @DisplayName("Заполнение форма регистрации с проверкой введеных результатов")
     void successfulRegistrationTest() {
         registrationPage.openPage()
                 .setFirstName(testData.firstName)
                 .setLastName(testData.lastName)
                 .setUserEmail(testData.userEmail)
                 .setGender(testData.userGender)
-                .setPhoneNubmer(testData.userPhoneNumber)
+                .setPhoneNumber(testData.userPhoneNumber)
                 .setDateOfBirth(testData.dayRandom, testData.monthRandom, testData.yearRandom)
                 .setUserSubjects(testData.usersubjects)
                 .setUserHobbies(testData.userHobbies)
@@ -38,13 +42,16 @@ public class PracticeFormWithJavaFaker extends TestBase {
                 .checkResultResponsive("State and City", testData.randomState + " " + testData.randomCity);
     }
 
+    @Tag("SimpleRegistration")
+    @Owner("Kwlad1ck")
+    @DisplayName("Заполнение упращенной формы регистрации с проверкой введеных результатов")
     @Test
-    void minimalDataforRegistrationTest() {
+    void minimalDataForRegistrationTest() {
         registrationPage.openPage()
                 .setFirstName(testData.firstName)
                 .setLastName(testData.lastName)
                 .setGender(testData.userGender)
-                .setPhoneNubmer(testData.userPhoneNumber)
+                .setPhoneNumber(testData.userPhoneNumber)
                 .clickSubmitButton();
 
         registrationPage.checkResultResponsive("Student Name", testData.firstName + " " + testData.lastName)
@@ -52,6 +59,9 @@ public class PracticeFormWithJavaFaker extends TestBase {
                 .checkResultResponsive("Mobile", testData.userPhoneNumber);
     }
 
+    @Tag("Negative")
+    @Owner("Kwlad1ck")
+    @DisplayName("Негативный тест заполнения формы")
     @Test
     void negativeRegistrationTest() {
         registrationPage.openPage()

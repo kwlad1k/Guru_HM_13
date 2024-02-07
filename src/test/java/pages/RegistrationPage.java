@@ -1,6 +1,7 @@
 package pages;
 
 import com.codeborne.selenide.SelenideElement;
+import io.qameta.allure.Step;
 import org.openqa.selenium.Keys;
 import pages.components.DataPickerComponent;
 import pages.components.ModalResponviseComponent;
@@ -12,7 +13,8 @@ import static com.codeborne.selenide.Selenide.*;
 
 public class RegistrationPage {
 
-    private SelenideElement firstNameInput = $("#firstName"),
+    private SelenideElement dilogRoot = $(".fc-consent-root"),
+            firstNameInput = $("#firstName"),
             lastNameInput = $("#lastName"),
             userEmailInput = $("#userEmail"),
             genderWrapper = $("#genterWrapper"),
@@ -30,107 +32,111 @@ public class RegistrationPage {
     DataPickerComponent dataPickerComponent = new DataPickerComponent();
     ModalResponviseComponent modalResponviseComponent = new ModalResponviseComponent();
 
+    @Step("Открытие страницы и удаление футера и банера")
     public RegistrationPage openPage() {
         open("/automation-practice-form");
         executeJavaScript("$('footer').remove()");
         executeJavaScript("$('#fixedban').remove()");
+        if (dilogRoot.isDisplayed()) {
+            dilogRoot.$(byText("Соглашаюсь")).click();
+        }
 
         return this;
     }
-
+    @Step("Ввод имени: {value}")
     public RegistrationPage setFirstName(String value) {
         firstNameInput.setValue(value);
 
         return this;
     }
-
+    @Step("Ввод фамилии: {value}")
     public RegistrationPage setLastName(String value) {
         lastNameInput.setValue(value);
 
         return this;
     }
-
+    @Step("Ввод Email: {value}")
     public RegistrationPage setUserEmail(String value) {
         userEmailInput.setValue(value);
 
         return this;
     }
-
+    @Step("Установка гендера: {value}")
     public RegistrationPage setGender(String value) {
         genderWrapper.$(byText(value)).click();
 
         return this;
     }
-
-    public RegistrationPage setPhoneNubmer(String value) {
+    @Step("Ввод номера телефона: {value}")
+    public RegistrationPage setPhoneNumber(String value) {
         userNubmerInput.setValue(value);
 
         return this;
     }
-
+    @Step("Установка Subjects: {value}")
     public RegistrationPage setUserSubjects(String value) {
         subjectInput.setValue(value).sendKeys(Keys.ENTER);
 
         return this;
     }
-
+    @Step("Установка хобби: {value}")
     public RegistrationPage setUserHobbies(String value) {
         hobbiesWrapper.$(byText(value)).click();
 
         return this;
     }
-
+    @Step("Загрузка картинки {value}")
     public RegistrationPage uploadPicture(String value) {
         uploadPicture.uploadFromClasspath(value);
 
         return this;
     }
-
-    public RegistrationPage setCurrentAddress(String valeu) {
-        currentAddressForm.setValue(valeu);
+    @Step("Ввод текущего адреса: {value}")
+    public RegistrationPage setCurrentAddress(String value) {
+        currentAddressForm.setValue(value);
 
         return this;
     }
-
+    @Step("Выбор Штата: {value}")
     public RegistrationPage setState(String value) {
         selectState.setValue(value).sendKeys(Keys.ENTER);
 
         return this;
     }
-
+    @Step("Выбор города: {value}")
     public RegistrationPage setCity(String value) {
         selectCity.setValue(value).sendKeys(Keys.ENTER);
 
         return this;
     }
-
+    @Step("Нажатие на кнопку Submit")
     public RegistrationPage clickSubmitButton() {
         submitButton.click();
 
         return this;
     }
-
+    @Step("Установка даты рождения {day}.{month}.{year}")
     public RegistrationPage setDateOfBirth(String day, String month, String year) {
         calenderInput.click();
         dataPickerComponent.setDate(day, month, year);
 
         return this;
     }
-
-    public RegistrationPage checkResultResponsive(String key, String valeu) {
+    @Step("Проверка ключа {key} с веденным значением: '{value}'")
+    public RegistrationPage checkResultResponsive(String key, String value) {
         tableResponsive.shouldBe(visible);
-        modalResponviseComponent.checkResult(key, valeu);
+        modalResponviseComponent.checkResult(key, value);
 
         return this;
     }
-
-    public RegistrationPage validationMatching(String key, String valeu) {
-        firstNameInput.shouldBe(cssValue(key, valeu));
-        lastNameInput.shouldBe(cssValue(key, valeu));
-        userNubmerInput.shouldBe(cssValue(key, valeu));
-        $("label[for='gender-radio-1']").shouldBe(cssValue(key, valeu));
-        $("label[for='gender-radio-2']").shouldBe(cssValue(key, valeu));
-        $("label[for='gender-radio-1']").shouldBe(cssValue(key, valeu));
+    @Step("Проверка валидации компонента")
+    public RegistrationPage validationMatching(String key, String value) {
+        firstNameInput.shouldBe(cssValue(key, value));
+        lastNameInput.shouldBe(cssValue(key, value));
+        userNubmerInput.shouldBe(cssValue(key, value));
+        $("label[for='gender-radio-1']").shouldBe(cssValue(key, value));
+        $("label[for='gender-radio-2']").shouldBe(cssValue(key, value));
+        $("label[for='gender-radio-1']").shouldBe(cssValue(key, value));
 
         return this;
     }
