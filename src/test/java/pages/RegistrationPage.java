@@ -38,7 +38,7 @@ public class RegistrationPage {
         executeJavaScript("$('footer').remove()");
         executeJavaScript("$('#fixedban').remove()");
         if (dilogRoot.isDisplayed()) {
-            dilogRoot.$(byText("Соглашаюсь")).click();
+            dilogRoot.$(byText("Consent")).click();
         }
 
         return this;
