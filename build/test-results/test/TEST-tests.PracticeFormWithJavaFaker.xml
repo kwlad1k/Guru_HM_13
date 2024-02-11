@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="tests.PracticeFormWithJavaFaker" tests="1" skipped="0" failures="0" errors="0" timestamp="2024-02-11T08:18:36" hostname="Noutbuk-Kwlad1ck.local" time="19.862">
-  <properties/>
-  <testcase name="Заполнение формы регистрации с проверкой введеных результатов" classname="tests.PracticeFormWithJavaFaker" time="19.862"/>
-  <system-out><![CDATA[]]></system-out>
-  <system-err><![CDATA[]]></system-err>
-</testsuite>
