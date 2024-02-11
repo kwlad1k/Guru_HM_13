@@ -11,7 +11,7 @@ public class PracticeFormWithJavaFaker extends TestBase {
     TestData testData = new TestData();
 
     @Test
-    @Tag("registration")
+    @Tag("Registration")
     @Owner("Kwlad1ck")
     @DisplayName("Заполнение формы регистрации с проверкой введеных результатов")
     void successfulRegistrationTest() {
