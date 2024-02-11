@@ -4,7 +4,7 @@ import com.codeborne.selenide.SelenideElement;
 import io.qameta.allure.Step;
 import org.openqa.selenium.Keys;
 import pages.components.DataPickerComponent;
-import pages.components.ModalResponviseComponent;
+import pages.components.ModalResponsiveComponent;
 
 import static com.codeborne.selenide.Condition.cssValue;
 import static com.codeborne.selenide.Condition.visible;
@@ -30,7 +30,7 @@ public class RegistrationPage {
             tableResponsive = $(".table-responsive");
 
     DataPickerComponent dataPickerComponent = new DataPickerComponent();
-    ModalResponviseComponent modalResponviseComponent = new ModalResponviseComponent();
+    ModalResponsiveComponent modalResponsiveComponent = new ModalResponsiveComponent();
 
 
     @Step("Открытие страницы и удаление футера и банера")
@@ -138,7 +138,7 @@ public class RegistrationPage {
     @Step("Проверка ключа {key} с веденным значением: '{value}'")
     public RegistrationPage checkResultResponsive(String key, String value) {
         tableResponsive.shouldBe(visible);
-        modalResponviseComponent.checkResult(key, value);
+        modalResponsiveComponent.checkResult(key, value);
 
         return this;
     }
