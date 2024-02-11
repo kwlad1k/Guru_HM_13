@@ -13,7 +13,7 @@ import static com.codeborne.selenide.Selenide.*;
 
 public class RegistrationPage {
 
-    private SelenideElement dilogRoot = $(".fc-consent-root"),
+    private SelenideElement dilogRoot = $(".fc-consent-root .fc-cta-consent"),
             firstNameInput = $("#firstName"),
             lastNameInput = $("#lastName"),
             userEmailInput = $("#userEmail"),
@@ -38,7 +38,7 @@ public class RegistrationPage {
         executeJavaScript("$('footer').remove()");
         executeJavaScript("$('#fixedban').remove()");
         if (dilogRoot.isDisplayed()) {
-            dilogRoot.$(byText("Consent")).click();
+            dilogRoot.click();
         }
 
         return this;
