@@ -13,7 +13,7 @@ import static com.codeborne.selenide.Selenide.*;
 
 public class RegistrationPage {
 
-    private SelenideElement dilogRoot = $(".fc-consent-root .fc-cta-consent"),
+    private SelenideElement dialogRoot = $(".fc-consent-root .fc-cta-consent"),
             firstNameInput = $("#firstName"),
             lastNameInput = $("#lastName"),
             userEmailInput = $("#userEmail"),
@@ -32,17 +32,30 @@ public class RegistrationPage {
     DataPickerComponent dataPickerComponent = new DataPickerComponent();
     ModalResponviseComponent modalResponviseComponent = new ModalResponviseComponent();
 
+
     @Step("Открытие страницы и удаление футера и банера")
     public RegistrationPage openPage() {
         open("/automation-practice-form");
         executeJavaScript("$('footer').remove()");
         executeJavaScript("$('#fixedban').remove()");
-        if (dilogRoot.isDisplayed()) {
-            dilogRoot.click();
-        }
 
         return this;
     }
+
+    @Step("Закрытие диалогового окна при его наличии ")
+    public RegistrationPage checkDialogModal() {
+        int counter = 0;
+        while (counter < 3) {
+            if (dialogRoot.isDisplayed()) {
+                dialogRoot.click();
+                break;
+            }
+            sleep(1000);
+            counter++;
+        }
+        return this;
+    }
+
     @Step("Ввод имени: {value}")
     public RegistrationPage setFirstName(String value) {
         firstNameInput.setValue(value);

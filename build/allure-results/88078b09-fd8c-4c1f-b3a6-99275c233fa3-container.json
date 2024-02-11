@@ -1,0 +1,1 @@
+{"uuid":"88078b09-fd8c-4c1f-b3a6-99275c233fa3","name":"PracticeFormWithJavaFaker","children":["04a79207-d58f-41ca-a1a1-f8691b472635"],"befores":[{"name":"beforeAll","status":"passed","stage":"finished","steps":[],"attachments":[],"parameters":[],"start":1707637787762,"stop":1707637787770}],"afters":[],"start":1707637787739,"stop":1707637797398}

@@ -13,9 +13,10 @@ public class PracticeFormWithJavaFaker extends TestBase {
     @Test
     @Tag("Registration")
     @Owner("Kwlad1ck")
-    @DisplayName("Заполнение форма регистрации с проверкой введеных результатов")
+    @DisplayName("Заполнение формы регистрации с проверкой введеных результатов")
     void successfulRegistrationTest() {
         registrationPage.openPage()
+                .checkDialogModal()
                 .setFirstName(testData.firstName)
                 .setLastName(testData.lastName)
                 .setUserEmail(testData.userEmail)
@@ -48,6 +49,7 @@ public class PracticeFormWithJavaFaker extends TestBase {
     @Test
     void minimalDataForRegistrationTest() {
         registrationPage.openPage()
+                .checkDialogModal()
                 .setFirstName(testData.firstName)
                 .setLastName(testData.lastName)
                 .setGender(testData.userGender)
@@ -65,6 +67,7 @@ public class PracticeFormWithJavaFaker extends TestBase {
     @Test
     void negativeRegistrationTest() {
         registrationPage.openPage()
+                .checkDialogModal()
                 .clickSubmitButton()
                 .validationMatching("border-color", "rgb(220, 53, 69)");
     }
